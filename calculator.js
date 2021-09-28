@@ -19,6 +19,45 @@ result.setAttribute('value', '')
 Maindiv.appendChild(result)
 
 
+//CLEAR
+let clear = document.createElement('div')
+clear.setAttribute('class', 'clear')
+Maindiv.appendChild(clear)
+
+let buttonClear = document.createElement('button')
+buttonClear.textContent = 'C'
+clear.appendChild(buttonClear)
+
+
+
+clear.addEventListener("click", (e) => {
+    result.value = ''
+    result.setAttribute('placeholder', '0')
+})
+
+
+
+
+//%
+let perc = document.createElement('div')
+perc.setAttribute('class', 'perc')
+Maindiv.appendChild(perc)
+
+let percent = document.createElement('button')
+percent.textContent = '%'
+percent.setAttribute('value', '%')
+perc.appendChild(percent)
+
+
+//+/-
+let com = document.createElement('div')
+com.setAttribute('class', 'com')
+Maindiv.appendChild(com)
+
+let Combutton = document.createElement('button')
+Combutton.textContent = '.'
+Combutton.setAttribute('value', '.')
+com.appendChild(Combutton)
 
 
 
@@ -29,9 +68,8 @@ Maindiv.appendChild(one)
 
 let button1 = document.createElement('button')
 button1.textContent = '1'
-button1.setAttribute('value','1')
+button1.setAttribute('value', '1')
 one.appendChild(button1)
-
 
 
 
@@ -136,18 +174,6 @@ zero.appendChild(button0)
 
 
 
-//EQUALS
-let equals = document.createElement('div')
-equals.setAttribute('class', 'equals')
-equals.setAttribute('onclick', 'computeResult()')
-Maindiv.appendChild(equals)
-
-let buttonEquals = document.createElement('button')
-buttonEquals.textContent = '='
-equals.appendChild(buttonEquals)
-
-
-
 //PLUS
 let plus = document.createElement('div')
 plus.setAttribute('class', 'plus')
@@ -192,23 +218,46 @@ divide.appendChild(buttonDivide)
 
 
 
+//EQUALS
+let equals = document.createElement('div')
+equals.setAttribute('class', 'equals')
 
+Maindiv.appendChild(equals)
+
+let buttonEquals = document.createElement('button')
+buttonEquals.textContent = '='
+equals.appendChild(buttonEquals)
+
+
+
+
+
+
+//DISPLAY NUMBERS
 let allButtons = document.querySelectorAll("button")
 for (const i of allButtons) {
     i.addEventListener("click", function (event) {
-        result.value += event.target.innerText;
+
+        if (event.target.innerText != '=') {
+            result.value += event.target.innerText;
+        }
+      
         console.log(event.target.innerText)
     })
 }
 
 console.log(result.value)
-/*
-function computeResult(str) {
-    return Function('return ' + str)()
-}
 
-const a = result.value
 
-console.log(computeResult(a)) // Should display 10
 
-*/
+equals.addEventListener("click", (e) => {
+
+    function computeResult(str) {
+        return Function('return ' + str)()
+    }
+
+    const a = result.value
+    console.log(computeResult(a)) 
+    result.value = computeResult(a)
+})
+
